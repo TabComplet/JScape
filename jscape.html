@@ -11,11 +11,17 @@
     </head>
     <body>
         <div class="container">
-        <h1>Jscape</h1>
-        <p class="instrucciones">
-            Instrucciones. 
-        </p>
-        <div>
+            <h1>JScape</h1>
+            <div style="min-height: 5em;">
+                <div style="float:right">
+                    <a class="button" onclick="explicacion()">Explicación</a>
+                </div>
+                <p>
+                    Instrucciones: Para completar cada nivel es necesario ejecutar el código "alert(document.cookie)".
+                </p>
+            </div>
+            <div id="explicacion">
+            </div>
             <div class="window">
                 <div class="window-header">
                     <span>Filtro</span>
@@ -25,10 +31,8 @@
             </div>
             <div class="rejilla">
                 <div class="columna">
-                    <div>
-                        <h3>Campo manipulable</h3>
-                        <textarea id="input" rows="7" onKeyUp="check()"></textarea>
-                    </div>
+                    <h3>Campo manipulable</h3>
+                    <textarea id="input" rows="7" onKeyUp="check()"></textarea>
                     <div>
                         <h3>Html</h3>
                         <pre id="html"></pre>
@@ -39,7 +43,7 @@
                 <div class="columna">
                     <div class="browser">
                         <div class="browser-header">
-                            <span>Web Page<span>
+                            <span>Web Page</span>
                         </div>
                         <div class="browser-body">
                             <iframe id="sandbox" src="about:blank" scrolling="no"></iframe>
@@ -48,6 +52,20 @@
                 </div>
             </div>
         </div>
+        <footer>
+        Diseñado por Fulapol, inspirado en alert(1) y prompt(1).
+        </footer>
         <script>cargarNivel(0);sandbox = $('sandbox').contentWindow;</script>
+        <div class="explicaciones">
+            <div id="0">
+                <h2>Bienvenido</h2>
+                <p>El objetivo de este sistema es mostrar los vectores que se utilizan para generar un ataque tipo XSS. Al avanzar de nivel podrás utilizar el botón de ayuda para obtener información que te permita evadir los filtros. Si estás leyendo esto por curiosidad es buen momento para empezar con el primer reto. Si no tienes ni idea de que es lo que se debe hacer continúa leyendo esta guía, y si haz logrado superarlo nunca esta de mas repasar los conceptos básicos.</p>
+
+                <h3>¿Qué es XSS?</h3>
+
+                <h3>Referencias</h3>
+                <a href="http://cwe.mitre.org/data/definitions/79.html">CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</a>
+            </div>
+        </div>
     </body>
 </html>
