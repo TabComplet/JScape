@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+
+<html lang=es>
+    <head>
+        <meta charset="utf-8">
+        <title>JScape</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/niveles.js"></script>
+        <script src="js/funciones.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        <h1>Jscape</h1>
+        <p class="instrucciones">
+            Instrucciones. 
+        </p>
+        <div>
+            <div class="window">
+                <div class="window-header">
+                    <span>Filtro</span>
+                </div>
+                <pre id="code" class="window-body">
+                </pre>
+            </div>
+            <div class="rejilla">
+                <div class="columna">
+                    <div>
+                        <h3>Campo manipulable</h3>
+                        <textarea id="input" rows="7" onKeyUp="check()"></textarea>
+                    </div>
+                    <div>
+                        <h3>Html</h3>
+                        <pre id="html"></pre>
+                        <h3>Log</h3>
+                        <pre id="log"></pre>
+                    </div>
+                </div>
+                <div class="columna">
+                    <div class="browser">
+                        <div class="browser-header">
+                            <span>Web Page<span>
+                        </div>
+                        <div class="browser-body">
+                            <iframe id="sandbox" src="about:blank" scrolling="no"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>cargarNivel(0);sandbox = $('sandbox').contentWindow;</script>
+    </body>
+</html>

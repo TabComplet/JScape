@@ -1,0 +1,96 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+.window {
+    color: #FFF;
+}
+
+.window-header {
+    background-color: #323232;
+    height: 1.3em;
+    padding: 0px 10px;
+    position: relative;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+}
+
+.window-body {
+    background-color: #363636;
+    padding: 1em;
+    border-radius: 0px 0px 10px 10px;
+    margin: 0px;
+}
+
+.browser {
+    color: #363636;
+}
+
+.browser-header {
+    background-color: #E2E2E2;
+    height: 1.3em;
+    padding: 0px 10px;
+    position: relative;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+}
+
+.browser-body {
+    background-color: #F7F7F7;
+    padding: 2em;
+    border-radius: 0px 0px 10px 10px;
+    height: 20em;
+}
+
+.browser-body iframe {
+    border: medium none;
+    overflow: hidden;
+    width: 100%;
+    pointer-events: none;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.rejilla {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 3em;
+}
+
+textarea {
+    overflow: auto;
+    color: #555;
+    border-radius: 4px;
+    height: auto;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    width: 100%;
+}
+
+pre {
+    font-size: 0.8em;
+    display: block;
+    padding: 1em;
+    background-color: #F5F5F5;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+@media (min-width:20em) {
+    .columna {
+    width: 100%;
+    }
+}
+
+@media (min-width:40em) {
+    .columna {
+        width: 45%;
+    }
+}
