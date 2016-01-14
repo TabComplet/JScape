@@ -1,23 +1,27 @@
 var escaper = [];
+var n = 0;
 
-escaper[0] = ""+
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   return '<script>console.log(\"' + s +'\");</script>\'\n"+
 "}";
 
-escaper[1] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   s = s.replace(/\"/g, '\\\\\"');\n"+
 "   return '<script>console.log(\"' + s + '\");</script>'\n"+
 "}";
 
-escaper[2] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   s = JSON.stringify(s);\n"+
 "   return '<script>console.log(' + s + ');</script>';\n"+
 "}";
 
-escaper[3] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   var url = 'javascript:console.log('+ JSON.stringify(s) +')';\n"+
 "   console.log(url);\n"+
@@ -28,7 +32,8 @@ escaper[3] = ""+
 "   a.click();\n"+
 "}";
 
-escaper[4] = ""+
+n += 1
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   var text = s.replace(/</g, '&lt;').replace('\"', '&quot;');\n"+
 "   text = text.replace(/(http:\\\/\\\/\\\S+)/g, '<a href=\"$1\">$1</a>');\n"+
@@ -36,7 +41,8 @@ escaper[4] = ""+
 "   return text;\n"+
 "}";
 
-escaper[5] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   var text = s.replace(/</g, '&lt;').replace('/\"/g', '&quot;');\n"+
 "   text = text.replace(/(http:\\\/\\\/\\\S+)/g, '<a href=\"$1\">$1</a>');\n"+
@@ -44,7 +50,8 @@ escaper[5] = ""+
 "   return text;"+
 "}";
 
-escaper[6] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   var m = s.split(/#/);\n"+
 "   var a = document.createElement('div');\n"+
@@ -52,7 +59,8 @@ escaper[6] = ""+
 "   return a.innerHTML;\n"+
 "}";
 
-escaper[7] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   var m = s.split(/#/)\n"+
 "   if (!/^[a-zA-Z\\\[\\\]']*$/.test(m[0])) return 'Función invalida';\n"+
@@ -61,17 +69,20 @@ escaper[7] = ""+
 "   return '<script>'+m[0]+'('+json+')</script>';\n"+
 "}";
 
-escaper[8] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   return '<script>console.log(\"'+ s.toUpperCase() +'\")</script>';\n"+
 "}";
 
-escaper[9] = ""+
+n += 1;
+escaper[n] = ""+
 "function escape(s) {\n"+
 "   if (/[\\\\<>]/.test(s)) return 'Se detectó un intento de inyección de código'\n"+
 "   return '<script>console.log(\"'+ s.toUpperCase() +'\")</script>';\n"+
 "}";
 
+//n += 1;
 //escaper[n] = ""+
 //"function escape(s) {\n"+
 //""+
