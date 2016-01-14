@@ -82,6 +82,10 @@ body {
     margin-top: 2em;
 }
 
+.columna {
+    width: 45%;
+}
+
 .columna > h3:first-child {
     margin-top: 0px;
 }
@@ -131,14 +135,12 @@ footer {
     text-align: center;
 }
 
-@media (min-width:20em) {
+@media (max-width:50em) {
     .columna {
-    width: 100%;
+        width: 100%;
     }
-}
 
-@media (min-width:40em) {
-    .columna {
-        width: 45%;
+    body {
+        font-size: 10pt;
     }
 }
