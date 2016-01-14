@@ -43,3 +43,36 @@ escaper[5] = ""+
 "   text = text.replace(/\\\[\\\[(\\\w+)\\|(.+?)\\\]\\\]/g, '<img alt=\"$2\" src=\"$1.gif\">');\n"+
 "   return text;"+
 "}";
+
+escaper[6] = ""+
+"function escape(s) {\n"+
+"   var m = s.split(/#/);\n"+
+"   var a = document.createElement('div');\n"+
+"   a.appendChild(document['create'+m[0]].apply(document, m.slice(1)));\n"+
+"   return a.innerHTML;\n"+
+"}";
+
+escaper[7] = ""+
+"function escape(s) {\n"+
+"   var m = s.split(/#/)\n"+
+"   if (!/^[a-zA-Z\\\[\\\]']*$/.test(m[0])) return 'Función invalida';\n"+
+"   var obj = {'userdata': m[1]};\n"+
+"   var json = JSON.stringify(obj).replace(/</g, '\\\\u003c');\n"+
+"   return '<script>'+m[0]+'('+json+')</script>';\n"+
+"}";
+
+escaper[8] = ""+
+"function escape(s) {\n"+
+"   return '<script>console.log(\"'+ s.toUpperCase() +'\")</script>';\n"+
+"}";
+
+escaper[9] = ""+
+"function escape(s) {\n"+
+"   if (/[\\\\<>]/.test(s)) return 'Se detectó un intento de inyección de código'\n"+
+"   return '<script>console.log(\"'+ s.toUpperCase() +'\")</script>';\n"+
+"}";
+
+//escaper[n] = ""+
+//"function escape(s) {\n"+
+//""+
+//"}";
