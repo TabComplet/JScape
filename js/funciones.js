@@ -1,4 +1,5 @@
 $ = document.getElementById.bind(document);
+$.cookie = Math.random()
 var nivel = 0;
 var old, prev = '';
 var oldConsole = console;
@@ -62,6 +63,8 @@ function check() {
 };
 
 function cargarNivel(n) {
+    html('');
+    log('');
     if (0 <= n && n < escaper.length) {
         $('explicacion').textContent = '';
         $('code').textContent = escaper[n];
