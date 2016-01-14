@@ -1,5 +1,5 @@
 $ = document.getElementById.bind(document);
-$.cookie = Math.random()
+document.cookie = Math.random()
 var nivel = 0;
 var old, prev = '';
 var oldConsole = console;

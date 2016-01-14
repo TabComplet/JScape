@@ -16,7 +16,7 @@
                 <div style="float:right">
                     <a class="button" onclick="explicacion()">Explicación</a>
                 </div>
-                <p>
+                <p class="instrucciones">
                     Instrucciones: Para completar cada nivel es necesario ejecutar el código "alert(document.cookie)".
                 </p>
             </div>
@@ -55,16 +55,81 @@
         <footer>
         Diseñado por Fulapol, inspirado en alert(1) y prompt(1).
         </footer>
-        <script>cargarNivel(0);sandbox = $('sandbox').contentWindow;</script>
+            <script>cargarNivel(0);sandbox = $('sandbox').contentWindow;sandbox.document.cookie = Math.random();</script>
         <div class="explicaciones">
             <div id="0">
                 <h2>Bienvenido</h2>
-                <p>El objetivo de este sistema es mostrar los vectores que se utilizan para generar un ataque tipo XSS. Al avanzar de nivel podrás utilizar el botón de ayuda para obtener información que te permita evadir los filtros. Si estás leyendo esto por curiosidad es buen momento para empezar con el primer reto. Si no tienes ni idea de que es lo que se debe hacer continúa leyendo esta guía, y si haz logrado superarlo nunca esta de mas repasar los conceptos básicos.</p>
-
+                <p>
+                    El objetivo de este sistema es mostrar los vectores que se utilizan para generar un ataque tipo XSS.
+                    Al avanzar de nivel podrás utilizar el botón de ayuda para obtener información que te permita evadir los filtros.
+                    Si estás leyendo esto por curiosidad es buen momento para empezar con el primer reto.
+                    Si no tienes ni idea de que es lo que se debe hacer continúa leyendo esta guía, y si haz logrado superarlo nunca esta de mas repasar los conceptos básicos.
+                </p>
+                <h3>¿Los ataques XSS representan un peligro real?</h3>
+                <p>
+                    Antes de empezar con una explicación del tema quisiera mencionar las implicaciones e impactos que pueden tener estos ataques con dos simples ejemplos.
+                    Mediante un ataque XSS se comprometio un servidor de la Fundación Apache. Utilizando XSS se logró obtener las credenciales administrativas del foro de Ubuntu, lo cual significo el robo de la información de 1.82 millones de usuarios.
+                        En conclusión: <b>Si, los ataques XSS pueden ser muy peligrosos.</b>
+                </p>
                 <h3>¿Qué es XSS?</h3>
-
+                <p>
+                    El sicrónimo <b>XSS</b> significa <i>Cross-Site</i> Scripting (la X inicial se utiliza en lugar de la C para evitar confusión con las hojas de estilo CSS).
+                    Mediante este tipo de ataques se inyecta código en las páginas web vistas por los usuarios.
+                    Las posibles consecuencias van desde un simple Deface (modificación de la página) hasta el robo de credenciales administrativas.<br>
+                    Al principio puede parecer inofensivo el hecho de inyectar código que genere alerts, sin embargo mediante Javascript se puede cargar un recurso externo (imagenes, páginas, audios) desde una URL formada maliciosamente de la forma <b>www.sitiomaligno.net/ruta-maliciosa/script.ext?info_leak=document.cookie</b> o cuyo contenido sirva para explotar otras vulnerabilidades como una película en Flash o, antes de que se eliminara el soporte, un applet en Java.
+                    Otra forma de aprovechar estas vulnerabilidades es generar un popup en HTML que pida el usuario y la contraseña para continuar usando la página, ataque al que la mayoria de los usuarios son susceptibles ya que confian en la petición por originarse en la misma página.<br>
+                    La forma en la que se puede abusar de una aplicación una vez que se logra inyectar código está limitada únicamente por la creatividad y existen frameworks como <a href="http://www.beefproject.com">BeEF</a> que proveen una gran cantidad de funcionalidades.
+                </p>
+                <p>
+                    Los ataques de tipo XSS se generan cuando el sistema no verifica la información que obtiene por parte de los usuarios y se clasifican de la siguiente forma:
+                    <ul>
+                        <li>XSS reflejado.</li>
+                        <li>XSS almacenado.</li>
+                        <li>XSS en DOM.</li>
+                    </ul>
+                    Las primeras dos clasificaciones se refieran a la forma en la que el vector XSS llega a un usuario.
+                    En un XSS reflejado el usuario debe mandar el código para que este se ejecute.
+                    Para lograr explotar esta vulnerabilidad se necesita de un punto intermedio como un link apuntando a la URL modificada o un form en páginas que no utilizan prevención de CSRF.
+                    Debido a la interacción con el usuario este tipo de ataques se consideran de baja peligrosidad.
+                    Un XSS almacenado se da cuando la información se guarda con la finalidad de presentarla posteriormente.
+                    Este tipo de ataques se puede dar en foros o muros de publicación, donde se utilizan muchos campos introducidos por los usuarios como el nombre, el mensaje, la firma y otros elementos personalisables.
+                    Una vez que la información se guarda lo único que se necesita es que los usuarios observen la página donde se generó el ataque, por lo que el nivel de riesgo de este tipo es alto, a diferencia del reflejado, ya que no requiere ningun tipo de interacción.
+                    Por último se encuentran los ataques basados en DOM.
+                    Bajo esta clasificación se reunen los ataques en los que la vulnerabilidad se encuentra dentro del propio código en el cliente.
+                    En los ejemplos anteriores el código malicioso es enviado al servidor y al hacer la petición el servidor envia la página con la inyección.
+                    En un ataque al DOM la información no llega al servidor.
+                    Este tipo de ataques se generan cuando se rompe alguna función escrita en Javascript y se logra inyectar código dentro de la aplicación.
+                    A lo largo de estos ejercicios todos los ataques pueden ser clasificados como ataques al DOM, sin embargo las técnicas empleadas pueden implementarse en lenguajes como PHP, ASP.Net y otros, por lo que los vectores también pueden utilizarse para evitar filtros y generar un ataque de tipo reflejado o almacenado.
+                </p>
+                <h3>Inyección de Código</h3>
+                <p>
+                    ¿De que forma se logra inyectar código en una página?
+                    La forma más común es mediante Javascript.
+                    Este es un lenguaje interpretado en el navegador que permite implementar funcionalidades en el sitio para que sea dinámico e interactivo.
+                    Un vector muy famoso para verificar la existencia de problemas es: <code>&lt;script>alert('Mensaje XSS')&lt;/script></code>.
+                    Una vez que el código se ha inyectado se observa una ventana con el mensaje.
+                    Este vector se utiliza para fines de PoC, ya que no puede utilizarse para realizar ataques pero muestra la existencia de la vulnerabilidad.
+                    Otra opción menos llamativa es mediante el uso de la función <code>console.log('Mensaje XSS')</code> que registra el mensaje en la consola de Javascript (accesible en cualquier navegador moderno).
+                </p>
+                <h3>Saneando las variables</h3>
+                <p>
+                    Una forma de prevenir estos ataques es usando filtros que sanean las variables, eliminando asi las partes peligrosas de la información y guardando las partes seguras, sin embargo estos filtros pueden evitarse.
+                    El objectivo de estos retos es mostrar las formas en las que los filtros fallan.
+                    Los niveles aumentan su dificultad de forma progresiva y aunque el saneado se implementa en Javascript algunas de estas técnicas se implemetan en otros lenguajes y sistemas IDS, por lo que el potencial de ataque de los vectores es muy grande.
+                </p>
+                <p>
+                    En este primer nivel el filtro utilizado muestra el problema de los lenguajes interpretados como Javascript.
+                    Al utilizar las dobles comilla para delimitar el texto se corre un peligro: la concatenación de variables permite terminar la cadena de texto e inyectar código.<br>
+                    Utilizando una variable con dobles comillas como <code>variable = '");otraFuncion("argumento'</code> el interprete convierte la expresión <code>texto = 'funcion("' + variable + ")'</code> en <code>texto = 'funcion("");otraFuncion("argumento")'</code>.
+                    Dependiendo del contexto la ejecución del código puede fallar ya que cada sentencia, menos la última donde esto es opcional, debe terminar en <b>;</b>.
+                    Añadir ; es una forma de evitar errores en tiempo de ejecución.
+                    Otra forma de garantizar la ejecución del codigo es insertando <b>//</b> o <b>/*</b> al final para que todo el código restante sea interpretado como un comentario y no se genere ningún error.<br>
+                    Esta información y un conocimiento básico de Javascript debe ser suficiente para completar este nivel.
+                </p>
                 <h3>Referencias</h3>
-                <a href="http://cwe.mitre.org/data/definitions/79.html">CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</a>
+                <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">Entrada en Wikipedia</a><br>
+                <a href="http://cwe.mitre.org/data/definitions/79.html">CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</a><br>
+                <a href="http://www.beefproject.com">The Browser Exploitation Framework Project</a>
             </div>
         </div>
     </body>
