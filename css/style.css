@@ -85,6 +85,10 @@
     display: none;
 }
 
+#explicacion {
+    margin: 2em;
+}
+
 p {
     text-align: justify;
 }
