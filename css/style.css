@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+body {
+        font-size: 12pt;
+        line-height: 1.3em;
+}
+
 .button {
     display: inline-block;
     text-decoration: none;
@@ -89,7 +94,7 @@
     margin: 2em;
 }
 
-p {
+.instrucciones {
     text-align: justify;
 }
 
