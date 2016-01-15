@@ -15,7 +15,25 @@ escaper[n] = ""+
 n += 1;
 escaper[n] = ""+
 "function escape(s) {\n"+
+"   s = s.replace(/\"/, '');\n"+
+"   s = s.replace(/</, ';');\n"+
+"   s = s.replace(/>/, ';');\n"+
+"   return '<script>console.log(\"' + s + '\");</script>'\n"+
+"}";
+
+n += 1;
+escaper[n] = ""+
+"function escape(s) {\n"+
+"   s = s.replace(/\"/g, '');\n"+
+"   return '<script>console.log(\"' + s + '\");</script>'\n"+
+"}";
+
+n += 1;
+escaper[n] = ""+
+"function escape(s) {\n"+
 "   s = s.replace(/\"/g, '\\\\\"');\n"+
+"   s = s.replace(/</g, '&lt;');\n"+
+"   s = s.replace(/>/g, '&gt;');\n"+
 "   return '<script>console.log(\"' + s + '\");</script>'\n"+
 "}";
 
