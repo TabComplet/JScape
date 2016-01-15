@@ -131,6 +131,36 @@
                 <a href="http://cwe.mitre.org/data/definitions/79.html">CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')</a><br>
                 <a href="http://www.beefproject.com">The Browser Exploitation Framework Project</a>
             </div>
-        </div>
+            <div id="1">
+                <h3>Inyección HTML</h3>
+                <p>
+                    La primer inyección abusa la forma en que se interpreta el código Javascript, sin embargo las inyecciones más básicas hacen uso de inyecciones HTML.
+                    Un sistema que imprime de forma directa cualquier cosa que se introduzca tiene un gran fallo de seguridad.
+                    Aunque es dificil encontrar un sistema que haga esto actualmente fue de esta forma que comenzaron los ataques XSS y aún es una practica común enviar código HTML para observar la forma en la que se procesa.
+                    Observar la página una vez procesada nos permite deducir como se sanean las variables.
+                </p>
+                <p>
+                    Tratar de imprimir en pantalla <code>&lt;b>"Negritas'&lt;b></code> permite obtener una gran cantidad de información en el procesamiento del texto sin generar sospechas.
+                    La respuesta puede eliminar las comillas, codificar los carácteres especiales o, si existe un fallo grave, imprimir el texto en negritas.
+                    En el última caso estamos frente a una inyección de HTML lo que nos permite introducir cualquier script que deseemos e incluso cambiar completamente la página.
+                </p>
+            </div>
+            <div id="2">
+            </div>
+            <div id="3">
+            </div>
+            <div id="4">
+            </div>
+            <div id="5">
+            </div>
+            <div id="6">
+            </div>
+            <div id="7">
+            </div>
+            <div id="8">
+            </div>
+            <div id="9">
+            </div>
+        </div>"
     </body>
 </html>
