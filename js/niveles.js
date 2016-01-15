@@ -9,6 +9,12 @@ escaper[n] = ""+
 n += 1;
 escaper[n] = ""+
 "function escape(s) {\n"+
+"   return '<h1>' + s + '</h1>'\n"+
+"}";
+
+n += 1;
+escaper[n] = ""+
+"function escape(s) {\n"+
 "   s = s.replace(/\"/g, '\\\\\"');\n"+
 "   return '<script>console.log(\"' + s + '\");</script>'\n"+
 "}";
