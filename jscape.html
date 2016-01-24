@@ -82,11 +82,13 @@
                 </p>
                 <p>
                     Los ataques de tipo XSS se generan cuando el sistema no verifica la información que obtiene por parte de los usuarios y se clasifican de la siguiente forma:
-                    <ul>
-                        <li>XSS reflejado.</li>
-                        <li>XSS almacenado.</li>
-                        <li>XSS en DOM.</li>
-                    </ul>
+                </p>
+                <ul>
+                    <li>XSS reflejado.</li>
+                    <li>XSS almacenado.</li>
+                    <li>XSS en DOM.</li>
+                </ul>
+                <p>
                     Las primeras dos clasificaciones se refieran a la forma en la que el vector XSS llega a un usuario.
                     En un XSS reflejado el usuario debe mandar el código para que este se ejecute.
                     Para lograr explotar esta vulnerabilidad se necesita de un punto intermedio como un link apuntando a la URL modificada o un form en páginas que no utilizan prevención de CSRF.
@@ -136,7 +138,7 @@
                 <p>
                     La primer inyección abusa la forma en que se interpreta el código Javascript, sin embargo las inyecciones más básicas hacen uso de inyecciones HTML.
                     Un sistema que imprime de forma directa cualquier cosa que se introduzca tiene un gran fallo de seguridad.
-                    Aunque es dificil encontrar un sistema que haga esto actualmente fue de esta forma que comenzaron los ataques XSS y aún es una practica común enviar código HTML para observar la forma en la que se procesa.
+                    Aunque actualmente es dificil encontrar un sistema que haga esto, fue de esta forma que comenzaron los ataques XSS y aún es una practica común enviar código HTML para observar la forma en la que se procesa.
                     Observar la página una vez procesada nos permite deducir como se sanean las variables.
                 </p>
                 <p>
@@ -146,6 +148,19 @@
                 </p>
             </div>
             <div id="2">
+                <h3>Escape con regex</h3>
+                <p>
+                    El término "escape" se refiere a cambiar caracteres especiales por caracteres seguros.
+                    Esto se consigue al cambiar la codificación o haciendo que el compilador no los interprete.
+                    Una de las formas habituales de escapar carácteres es buscarlos mediante expresiones regulares y sustituirlos.
+                </p>
+                <p>
+                  En JavaScript la función string.replace() acepta como argumentos una expresión regular y la sustitución.
+                  Las expresiones regulares son de la forma <i>/RegExp/flags</i>.
+                  El mayor riesgo que se corre es tener una expresión regular que no sea capaz de escapar las expresiones malformadas.
+                  Entre los parámetros mas importantes que se deben incluir en estas expresiones se encuentra la flag <b>g</b> que indica una busqueda global.
+                  Si esta bandera no se encuentra activada el remplazo termina en la primer coincidencia y nuestro filtro se vuelve inservible.
+                </p>
             </div>
             <div id="3">
             </div>
